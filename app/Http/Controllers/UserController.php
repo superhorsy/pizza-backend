@@ -51,7 +51,7 @@ SCRIPT;
             [
                 'name' => $oauth->getName(),
             ]
-        )->first();
+        );
 
         // Log user In
         Auth::guard()->login($this->user, true);
@@ -61,11 +61,9 @@ SCRIPT;
         );
     }
 
-    public function getUserData(Request $request)
+    public function getUserData()
     {
-        Auth::user();
-
-        return $this->success();
+        return $this->success(Auth::user());
     }
 
     public function logout(Request $request)

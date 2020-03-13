@@ -2,21 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Components\OrderService;
+use App\Http\Requests\OrderRequest;
 use App\Order;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function addToCart(Request $request)
+
+    /**
+     * @var Order
+     */
+    private $order;
+
+    public function __construct(Order $order)
     {
-        $request->validate(
-            [
-                'id' => 'integer|exists:pizzas'
-            ]
-        );
-        OrderService::updateCart($request->id);
-        return $this->success(OrderService::getCart());
+        $this->order = $order;
+    }
+
+    /**
+     * Places new order
+     *
+     * @param  OrderRequest  $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\ApiException
+     */
+    public function placeOrder(OrderRequest $request)
+    {
+        $request->validateOrderRequest();
+
+        $this->order = $this->order->create($request->all());
+
+        if ($user = Auth::user()) {
+            $this->order->user()->associate($user);
+        }
+
+        return $this->success($this->order);
     }
 }
