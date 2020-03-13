@@ -23,7 +23,15 @@ class Order extends Model
 
     public function setOrderListAttribute($orderList)
     {
-        $this->attributes['order_list'] = collect($orderList)->toJson();
+        $orderList = collect($orderList)->map(function ($position) {
+            $pizza = Pizza::find($position['id']);
+           return [
+               'name' => $pizza->name,
+               'count' => $position['count'],
+               'price' => $pizza->price_usd,
+           ];
+        });
+        $this->attributes['order_list'] = $orderList->toJson();
     }
 
     public function setTotalPriceAttribute($totalPrice)

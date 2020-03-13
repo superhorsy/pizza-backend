@@ -1,0 +1,31 @@
+POST http://pizza/api/order/add
+Content-Type: application/json
+
+{
+  "orderList": [
+    {
+      "id": 1,
+      "count": 1
+    },
+    {
+      "id": 2,
+      "count": 3
+    }
+  ],
+  "totalPrice": "44.8‬",
+  "name": "Alex",
+  "phone": "+34 9991122",
+  "address": "City of Bremen, Living Street, 36/1"
+}
+
+###
+
+POST http://pizza/api/pizza/list
+Content-Type: application/json
+
+###
+
+POST http://pizza/api/user/logout
+Content-Type: application/json
+
+###

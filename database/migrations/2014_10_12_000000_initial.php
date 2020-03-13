@@ -20,8 +20,6 @@ class Initial extends Migration
                 $table->bigIncrements('id');
                 $table->string('google_id')->unique();
                 $table->string('name');
-                $table->string('phone');
-                $table->string('address');
                 $table->rememberToken();
                 $table->timestamps();
             }
@@ -31,14 +29,17 @@ class Initial extends Migration
             'orders',
             function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->bigInteger('user_id')->unsigned()->index();
+                $table->bigInteger('user_id')->unsigned()->nullable()->index();
                 $table->json('order_list');
                 $table->double('total');
+                $table->string('name');
+                $table->string('phone');
+                $table->string('address');
                 $table->timestamps();
 
                 $table->foreign('user_id')->references('id')->on(
                     'users'
-                )->onDelete('cascade');
+                );
             }
         );
 
