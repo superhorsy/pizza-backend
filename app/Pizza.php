@@ -15,6 +15,6 @@ class Pizza extends Model
 
     public function getPhotoAttribute()
     {
-        return "/img/{$this->id}.jpeg";
+        return "/img/{$this->id}.png";
     }
 }

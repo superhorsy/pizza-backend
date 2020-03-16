@@ -20,12 +20,22 @@ Content-Type: application/json
 
 ###
 
-POST http://pizza/api/pizza/list
+POST http://pizza.com/api/pizza/list
 Content-Type: application/json
 
 ###
 
-POST http://pizza/api/user/logout
+POST http://pizza.com/api/user/logout
+Content-Type: application/json
+
+###
+
+POST http://pizza.com/api/user/login
+Content-Type: application/json
+
+###
+
+POST http://pizza.com/api/user/info
 Content-Type: application/json
 
 ###

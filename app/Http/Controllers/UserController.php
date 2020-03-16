@@ -42,7 +42,7 @@ SCRIPT;
      */
     public function handleProviderCallback()
     {
-        $oauth = Socialite::driver('google')->user();
+        $oauth = Socialite::driver('google')->stateless()->user();
 
         $this->user = $this->user::firstOrNew(
             [

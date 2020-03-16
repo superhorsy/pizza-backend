@@ -20,10 +20,6 @@ Route::get(
     }
 );
 
-Route::middleware(['middleware' => 'web'])->group(
-    function () {
-        //OAuth authorization
-        Route::get('/auth/redirect', 'UserController@redirectToProvider');
-        Route::get('/auth/callback', 'UserController@handleProviderCallback');
-    }
-);
+//OAuth authorization
+Route::get('/auth/redirect', 'UserController@redirectToProvider');
+Route::get('/auth/callback', 'UserController@handleProviderCallback');

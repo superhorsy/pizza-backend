@@ -6,6 +6,7 @@ namespace App\Components;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 trait SendsResponses
 {
@@ -14,7 +15,7 @@ trait SendsResponses
         return new JsonResponse(
             [
                 'success' => true,
-                'meta'    => Auth::user() ?? [],
+                'meta' => $this->getMeta(),
                 'payload' => $payload
             ]
         );
@@ -25,13 +26,20 @@ trait SendsResponses
         return new JsonResponse(
             [
                 'success' => false,
-                'meta'    => Auth::user() ?? [],
+                'meta' => $this->getMeta(),
                 'payload' => [
-                    'code'    => $code,
+                    'code' => $code,
                     'message' => $message
                 ]
             ]
         );
     }
 
+    private function getMeta()
+    {
+        return [
+            'api-token' => Session::token(),
+            'user' => Auth::user() ?? [],
+        ];
+    }
 }
