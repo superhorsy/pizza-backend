@@ -38,7 +38,6 @@ trait SendsResponses
     private function getMeta()
     {
         return [
-            'api-token' => Session::token(),
             'user' => Auth::user() ?? [],
         ];
     }

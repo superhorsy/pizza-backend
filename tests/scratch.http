@@ -1,21 +1,14 @@
-POST http://pizza/api/order/add
+POST http://pizza.com/api/order/add
 Content-Type: application/json
 
 {
-  "orderList": [
-    {
-      "id": 1,
-      "count": 1
-    },
-    {
-      "id": 2,
-      "count": 3
-    }
-  ],
-  "totalPrice": "44.8‬",
-  "name": "Alex",
-  "phone": "+34 9991122",
-  "address": "City of Bremen, Living Street, 36/1"
+    "orderList": [
+        3
+    ],
+    "totalPrice": 12.45,
+    "name": "IRINA GRIN",
+    "phone": "89532726991",
+    "address": "Romana Bryanskogo"
 }
 
 ###

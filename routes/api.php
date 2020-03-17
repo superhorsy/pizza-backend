@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::post('/order/add', 'OrderController@placeOrder');
-Route::post('/pizza/list', 'PizzaController@getList');
+Route::post('/order/add', 'OrderController@placeOrder')->middleware('cors');
+Route::post('/pizza/list', 'PizzaController@getList')->middleware('cors');
 Route::post('/user/logout', 'UserController@logout')->middleware('auth');
 Route::post('/user/info', 'UserController@getUserData')->middleware('auth');
 Route::post('/user/getOrders', 'UserController@getOrders')->middleware('auth');
