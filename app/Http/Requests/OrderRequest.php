@@ -27,13 +27,11 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'orderList'         => 'required|array',
-            'orderList.*.id'    => 'required|integer|exists:pizzas',
-            'orderList.*.count' => 'required|integer',
-            'totalPrice'        => 'required',
-            'name'              => 'required|string',
-            'phone'             => 'required|string',
-            'address'           => 'required|string',
+            'orderList'      => 'required|array',
+            'totalPrice'     => 'required',
+            'name'           => 'required|string',
+            'phone'          => 'required|string',
+            'address'        => 'required|string',
         ];
     }
 
@@ -51,13 +49,13 @@ class OrderRequest extends FormRequest
         );
 
         $total = 0;
+
         foreach ($this->orderList as $position) {
-            $price = $pizzaList->firstWhere(
+            $total += $pizzaList->firstWhere(
                 'id',
                 '=',
                 $position['id']
             )->price_usd;
-            $total += $price * $position['count'];
         }
 
         if ($total != $this->totalPrice) {
